@@ -1,21 +1,25 @@
-import React from 'react';
-import Form from './SignUp';
+import React, { useState } from 'react';
+import Modal from './Modal';
+import "../styles/App.css"
 
 const App = () => {
-  const handleSubmit = (formValues) => {
-    console.log(formValues);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
-  const fields = [
-    { name: 'name', type: 'text', label: 'Name' },
-    { name: 'email', type: 'email', label: 'Email' },
-    { name: 'password', type: 'password', label: 'Password' }
-  ];
-
   return (
-    <div>
-      <h1>Form Example</h1>
-      <Form onSubmit={handleSubmit} fields={fields} />
+    <div className='modal'>
+      <button id='open' onClick={() => setShowModal(true)}>Open Modal</button>
+      <Modal show={showModal} onClose={handleCloseModal}>
+        {/* Content for the modal */}
+        <div className='modal'>
+        <h2>Modal Title</h2>
+        <p>This is the content of the modal.</p>
+        </div>
+
+      </Modal>
     </div>
   );
 };
